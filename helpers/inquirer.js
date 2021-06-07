@@ -56,7 +56,7 @@ const leerInput = async (message) => {
         type: "input",
         name: "desc",
         message,
-        validate(value) {//aqui estamos validando q se ingrese un valor
+        validate(value) {
             if (value.length === 0) {
                 return "Por favor ingrese un valor"
             }
@@ -65,13 +65,12 @@ const leerInput = async (message) => {
     }]
     const { desc } = await inquirer.prompt(question);
 
-    // en esta linea de codigo estamos llamando al prompt 
+     
 
 
 
     return desc;
-    //hacemos el return de desc ya que siendo un objeto es lo que en realidad quiero que me muestre en pantalla luego de ejecutarse 
-
+   
 }
 
 const listarLugares = async (lugares = []) => {
@@ -96,7 +95,7 @@ const listarLugares = async (lugares = []) => {
             type: "list",
             name: "id",
             message: "Seleccione una ciudad",
-            choices //aqui se estan guardando las opcines que son las que definimos con el .map
+            choices 
         }
     ]
     const { id } = await inquirer.prompt(preguntas)
@@ -106,7 +105,7 @@ const listarLugares = async (lugares = []) => {
 const seguroBorrar = async (message) => {
     const question = [
         {
-            type: "confirm",//el tipo confirm recibe un valor booleano de yes or not 
+            type: "confirm", 
             name: "answer",
             message
         }
@@ -121,15 +120,13 @@ const seguroBorrar = async (message) => {
 const mostrarListadoCheckList = async (tareas = []) => {
 
 
-    const choices = tareas.map((tarea, i) => { //con el map transformamos la data que recibimos a lo que queramos
+    const choices = tareas.map((tarea, i) => { 
         const idx = `${i + 1}.`.green
 
         return {
             value: tarea.id,
             name: `${idx} ${tarea.descripcion}`,
-            checked: (tarea.completadoEn) ? true : false  //aqui estamos diciendo que si la tarea esta completada se marque la opcion 
-            //el unico cambio con respecto a listar tareas es 
-            //que estamos usando el checkbox
+            checked: (tarea.completadoEn) ? true : false  
         }
     })
 
@@ -140,7 +137,7 @@ const mostrarListadoCheckList = async (tareas = []) => {
             type: "checkbox",
             name: "ids",
             message: "Seleccione",
-            choices //aqui se estan guardando las opcines que son las que definimos con el .map
+            choices 
         }
     ]
     const { ids } = await inquirer.prompt(pregunta)
